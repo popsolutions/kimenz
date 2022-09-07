@@ -68,7 +68,9 @@ class HelpdeskTicketController(HelpdeskTicketController):
             .id,
             "partner_id": request.env.user.partner_id.id,
             "partner_name": request.env.user.partner_id.name,
-            "partner_email": request.env.user.partner_id.email
+            "partner_email": request.env.user.partner_id.email,
+            "fsm_location_id": int(kw.get("locations")),
+            "fsm_equipment_id": int(kw.get("equipments"))
         }
         new_ticket = request.env["helpdesk.ticket"].sudo().create(vals)
         new_ticket.message_subscribe(partner_ids=request.env.user.partner_id.ids)
