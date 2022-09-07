@@ -25,6 +25,8 @@ class HelpdeskTicket(models.Model):
             "default_ticket_id": self.id,
             "default_priority": self.priority,
             "default_location_id": self.fsm_location_id.id,
+            "default_equipment_id": self.fsm_equipment_id.id,
+            "type": 1 # Maintenance
         }
         res = self.env.ref("fieldservice.fsm_order_form", False)
         action["views"] = [(res and res.id or False, "form")]
